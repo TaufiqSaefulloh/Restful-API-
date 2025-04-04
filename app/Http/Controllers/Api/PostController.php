@@ -11,14 +11,18 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        //get posts
-        $posts = Post::latest()->paginate(5);
+    public function index(Request $request)
+{
+    $posts = Post::latest()->paginate(5);
 
-        //return collection of posts as a resource
+    // Jika request dari API (header Accept: application/json)
+    if ($request->wantsJson()) {
         return new PostResource(true, 'List Data Posts', $posts);
     }
+
+    // Jika request dari web (HTML)
+    return view('posts.index', compact('posts'));
+}
     public function store(Request $request)
     {
         //define validation rules

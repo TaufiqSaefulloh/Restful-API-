@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\ShowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\Api\PostController;
 Route::get('/', action: function () {
     return view('layouts.app');
 });
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/show', [ShowController::class, 'show'])->name('posts.index');
 Route::get('/posts/create', function () {
     return view('posts.create');
 })->name('posts.create');

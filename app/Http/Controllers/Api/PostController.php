@@ -16,12 +16,12 @@ class PostController extends Controller
     $posts = Post::latest()->paginate(5);
 
     // Jika request dari API (header Accept: application/json)
-    if ($request->wantsJson()) {
+    // if ($request->wantsJson()) {
         return new PostResource(true, 'List Data Posts', $posts);
-    }
+    // }
 
     // Jika request dari web (HTML)
-    return view('posts.index', compact('posts'));
+    // return view('posts.index', compact('posts'));
 }
     public function store(Request $request)
     {
